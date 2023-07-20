@@ -1,6 +1,5 @@
 package com.luxlog.api.controller;
 
-import com.luxlog.api.config.data.UserSession;
 import com.luxlog.api.request.PostCreate;
 import com.luxlog.api.request.PostEdit;
 import com.luxlog.api.request.PostSearch;
@@ -19,16 +18,6 @@ import java.util.List;
 public class PostController {
     private final PostService postService;
 
-    @GetMapping("/foo")
-    public Long test(UserSession userSession) {
-        log.info("get /foo : {}",userSession.getId());
-        return userSession.getId();
-    }
-
-    @GetMapping("/bar")
-    public String bar() {
-        return "인증 필요 없어";
-    }
     /**
      * 글 포스트 할때 받아준다(폼 데이터로 넘김)
      */

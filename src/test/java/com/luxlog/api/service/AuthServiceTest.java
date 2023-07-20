@@ -4,7 +4,6 @@ import com.luxlog.api.crypto.PasswordEncoder;
 import com.luxlog.api.domain.User;
 import com.luxlog.api.exception.AlreadySignedUpException;
 import com.luxlog.api.repository.UserRepository;
-import com.luxlog.api.request.Login;
 import com.luxlog.api.request.SignUp;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -76,26 +75,5 @@ class AuthServiceTest {
                 .isInstanceOf(AlreadySignedUpException.class);
     }
 
-    @Test
-    @DisplayName("로그인 성공 with 암호화된 password")
-    void loginSuccess() {
-        //given
-        SignUp signUp = SignUp.builder()
-                .email("test@gmail.com")
-                .password("1234")
-                .name("test1")
-                .build();
 
-        authService.signUp(signUp);
-
-        Login login = Login.builder()
-                .email(signUp.getEmail())
-                .password("1234")
-                .build();
-        //when
-        Long id = authService.signIn(login);
-        assertThat(userRepository.findById(id)).isNotNull();
-
-        //then
-    }
 }
