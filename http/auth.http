@@ -26,3 +26,25 @@ Content-Type: application/json
 GET http://localhost:8080/foo
 Content-Type: application/json
 Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIn0.3NP5KezO-TYGAsTJFri9cVgZT-6G1a3n0JARiCxUNEo
+
+### security 회원가입
+POST http://localhost:8080/auth/signup
+Content-Type: application/json
+
+{
+  "name": "security",
+  "email": "security@gmail.com",
+  "password": "1234"
+}
+
+### security 로그인
+POST http://localhost:8080/auth/login
+Content-Type: application/x-www-form-urlencoded
+
+username=security@gmail.com&password=1234&remember=1
+
+### 사용자 페이지
+GET http://localhost:8080/user
+
+### 관리자 페이지
+GET http://localhost:8080/admin

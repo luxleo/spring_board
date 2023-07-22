@@ -1,6 +1,6 @@
 plugins {
 	id 'java'
-	id 'org.springframework.boot' version '2.7.13'
+	id 'org.springframework.boot' version  '3.0.5'
 	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
 }
 
@@ -8,7 +8,7 @@ group = 'com.luxlog'
 version = '0.0.1-SNAPSHOT'
 
 java {
-	sourceCompatibility = '11'
+	sourceCompatibility = '17'
 }
 
 configurations {
@@ -16,6 +16,7 @@ configurations {
 		extendsFrom annotationProcessor
 	}
 }
+
 
 repositories {
 	mavenCentral()
@@ -31,9 +32,9 @@ dependencies {
 	// validation 포함 안된거 추가하기
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	// queryDSL 추가
-	implementation 'com.querydsl:querydsl-jpa'
+	implementation 'com.querydsl:querydsl-jpa:5.0.0:jakarta'
 	implementation 'com.querydsl:querydsl-core'
-	annotationProcessor "com.querydsl:querydsl-apt:${dependencyManagement.importedProperties['querydsl.version']}:jpa"
+	annotationProcessor "com.querydsl:querydsl-apt:5.0.0:jakarta"
 	annotationProcessor "jakarta.annotation:jakarta.annotation-api"
 	annotationProcessor "jakarta.persistence:jakarta.persistence-api"
 
@@ -41,6 +42,11 @@ dependencies {
 	implementation 'org.springframework.security:spring-security-crypto'
 	//scrypt 의존 패키지 bouncy castle
 	implementation 'org.bouncycastle:bcprov-jdk15on:1.70'
+	//spring security
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.security:spring-security-test'
+	//spring session
+	implementation 'org.springframework.session:spring-session-jdbc'
 
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'com.h2database:h2'
@@ -56,3 +62,4 @@ tasks.named('test') {
 clean {
 	delete file('src/main/generated')
 }
+

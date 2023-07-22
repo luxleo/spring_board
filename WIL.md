@@ -145,8 +145,25 @@
     1. PasswordEncoder와 같이 인터페이스의 구현체를 상황별로 달리둔다.
         예) ScryptPasswordEncoder = default
             PlainPasswordEncdoer = test 이런식으로 말이다.
+### 쿠키와 세션은 다르다.
+    1. 세션값을 쿠키에 보관하긴 하지만 쿠키는 매체일뿐이다.
+    2. 세션값은 로그인한 회원의 정보를 식별하는 역활을 한다.   
+    3. 쿠키는 포장박스, 세션값은 알맹이
 # 단축키
 ```text
 1. class에서 annotation으로 메서드생성시에 cmd+7하면
     자동으로 생성된 메서드들 참조가능하다.
 ```
+# spring security
+### security.core.userdetails
+```text
+    public UserPrincipal (com.luxlog.api.domain.User user){
+        super(user.getEmail(), user.getPassword(), List.of(
+                new SimpleGrantedAuthority("ROLE_ADMIN"),
+                new SimpleGrantedAuthority("WRITE")));
+        userId = user.getId();
+    }
+```
+    에서 new SimpleGrantedAuthority()에서
+    'ROLE_' 프리픽스가 있으면 role으로 지정
+    없으면 authority로 지정한다.

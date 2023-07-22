@@ -21,5 +21,12 @@ spring:
     defer-datasource-initialization: true # .sql 파일이 hibernate초기화 이후 동작 하도록
     hibernate:
       ddl-auto: create-drop
+  session:
+    timeout: 3600
 luxlog:
   jwt-key: "cd7+/e8dlsaOiRldLN5KCqrojWXKXnBr4KeFDq9ab/s="
+server:
+  servlet:
+    session:
+      cookie:
+        max-age: 3600

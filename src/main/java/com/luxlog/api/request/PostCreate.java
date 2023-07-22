@@ -3,7 +3,7 @@ package com.luxlog.api.request;
 import com.luxlog.api.exception.InvalidException;
 import lombok.*;
 
-import javax.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotBlank;
 
 @Setter @Getter
 @ToString
