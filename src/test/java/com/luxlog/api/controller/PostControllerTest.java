@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -37,6 +38,7 @@ class PostControllerTest {
     ObjectMapper objectMapper;
 
     @Test
+    @WithMockUser(username = "test1@gmail.com",roles = {"ADMIN"})
     @DisplayName("/posts 시 title은 비어있으면 에러를 던진다.")
     void validationTest() throws Exception {
         //given
@@ -60,6 +62,7 @@ class PostControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "test1@gmail.com",roles = {"ADMIN"})
     @DisplayName("/posts service.save를 하면 db에 저장이된다..")
     void saveTest() throws Exception {
         //given
@@ -126,6 +129,7 @@ class PostControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "test1@gmail.com",roles = {"ADMIN"})
     @DisplayName("글 제목 수정")
     void editPost() throws Exception {
         //given
@@ -149,6 +153,7 @@ class PostControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "test1@gmail.com",roles = {"ADMIN"})
     @DisplayName("게시글 삭제 테스트")
     void deleteTest() throws Exception {
         //given
@@ -165,6 +170,7 @@ class PostControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "test1@gmail.com",roles = {"ADMIN"})
     @DisplayName("없는 게시글 수정 및 삭제시 404응답")
     void noSuchPost() throws Exception {
         //given
@@ -184,6 +190,7 @@ class PostControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "test1@gmail.com",roles = {"ADMIN"})
     @DisplayName("금지어 \'바보\'가 포함되면 InvalidException")
     void invalidContent() throws Exception {
         //given

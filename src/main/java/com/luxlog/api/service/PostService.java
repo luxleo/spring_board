@@ -3,7 +3,9 @@ package com.luxlog.api.service;
 import com.luxlog.api.domain.Post;
 import com.luxlog.api.domain.PostEditor;
 import com.luxlog.api.exception.PostNotFoundException;
+import com.luxlog.api.exception.UserNotFoundException;
 import com.luxlog.api.repository.PostRepository;
+import com.luxlog.api.repository.UserRepository;
 import com.luxlog.api.request.PostCreate;
 import com.luxlog.api.request.PostEdit;
 import com.luxlog.api.request.PostSearch;
@@ -20,9 +22,17 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class PostService {
+    private final UserRepository userRepository;
     private final PostRepository postRepository;
-    public void write(PostCreate postCreate) {
-        Post post = new Post(postCreate.getTitle(), postCreate.getContent());
+
+    public void write(Long userId, PostCreate postCreate) {
+        var user = userRepository.findById(userId)
+                .orElseThrow(UserNotFoundException::new);
+        Post post = Post.builder()
+                .title(postCreate.getTitle())
+                .content(postCreate.getContent())
+                .user(user)
+                .build();
         postRepository.save(post);
     }
 

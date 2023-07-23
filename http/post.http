@@ -1,3 +1,12 @@
-GET http://localhost:8080/foo
+### 게시글 작성
+POST http://localhost:8080/posts
 Content-Type: application/json
-Authorization: asd
+
+{
+  "title": "security post",
+  "content": "security"
+}
+
+### 게시글 삭제
+DELETE http://localhost:8080/posts/1
+Content-Type: application/json

@@ -1,12 +1,13 @@
 package com.luxlog.api.domain;
 
+import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Table(name = "user")
 @Entity
@@ -19,6 +20,8 @@ public class User {
     private String email;
     private String password;
     private LocalDateTime createdAt;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private List<Post> posts;
 
     @Builder
     public User(String name, String email, String password) {

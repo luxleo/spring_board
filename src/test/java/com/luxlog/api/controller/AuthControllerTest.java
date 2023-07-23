@@ -47,7 +47,7 @@ class AuthControllerTest {
                 .build();
 
         //when
-        mockMvc.perform(post("/auth/sign-up")
+        mockMvc.perform(post("/auth/signup")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(signUp)))
                 .andExpect(status().isOk())
